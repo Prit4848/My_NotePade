@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Note Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="main w-full h-screen bg-black">
+        <div class="form p-10 text-white">
+            <form action="/create" method="post">
+                <input
+                    class="block w-full rounded-md outline-none mt-2 px-5 py-2 bg-black border border-gray-500"
+                    type="text"
+                    placeholder="Title write here..."
+                    name="title"
+                />
+                <textarea
+                    class="block w-full rounded-md outline-none mt-2 px-5 py-2 bg-black resize-none border border-gray-500"
+                    placeholder="Write your task detail here..."
+                    name="details"
+                ></textarea>
+                <input class="mt-2 bg-blue-600 px-5 py-2 rounded-md text-white border border-blue-700" type="submit" value="create Task"/>
+            </form>
+            <div class="task gap-3 flex  flex-wrap p-10 ">
+            <% if(files.length > 0){%>
+               <% files.forEach(function(val){ %>
+                    <div class="task w-72 px-3 py-4 rounded-md bg-zinc border boder-gray-500">
+                        <h1 class="text-white text-3xl tracking-tighter"><%= val%></h1>
+                        <div class="flex w-full justify-between items-center mt-3">
+                            <a class="text-blue-500 inline-block " href="/files/<%= val %>">Read More</a>
+                            <a class="text-zink-600" href="/edit/<%= val %>">edit_Filename</a>
+                        </div>
+                     </div>
+               
+               <% }) %>
+           <% } else{%>
+                    <h3 class="text-zink-600">no task yet</h3>
+                  <% }%>
+                </div>
+        </div>
+    </div>
+</body>
+</html>
